@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  nextjs-app:
+    image: PearlThoughts/recurring-date-picker
+    container_name: date-picker
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "3000:3000" # Maps port 3000 on the host to port 3000 in the container
+    environment:
+      NODE_ENV: production # Ensures the app runs in production mode
+    volumes:
+      - .:/app # Mounts the project directory for live code changes (development mode)
+      - /app/node_modules # Prevents overwriting the container's node_modules
+    stdin_open: true # Keeps the container open for interaction
+    tty: true # Enables terminal support
+

@@ -1,0 +1,20 @@
+# Step 1: Base Image for Building
+FROM node:18-alpine AS builder
+
+# Install pnpm globally
+RUN npm install -g pnpm
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and lock file
+COPY package.json pnpm-lock.yaml ./
+
+# Install dependencies
+RUN pnpm install
+
+# Copy the project files
+COPY . .
+
+# Start the Next.js application
+CMD ["pnpm", "dev"]
