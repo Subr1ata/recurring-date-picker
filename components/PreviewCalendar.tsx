@@ -15,6 +15,10 @@ const PreviewCalendar = () => {
   const [dates, setDates] = useState<Date[]>([]);
 
   useEffect(() => {
+    if (!startDate && !endDate && dates.length) {
+      setDates([]);
+    }
+
     if (!startDate) return;
 
     const calculateRecurringDates = () => {
