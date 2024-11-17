@@ -13,7 +13,6 @@ function parseCurrentDate() {
 const DateRangeSelector = () => {
   const { startDate, endDate, setStartDate, setEndDate } = useDatePickerStore();
 
-  console.log("startDate ---> ", startDate);
   return (
     <div className="mb-4">
       <label className="block font-medium mb-2">Date Range:</label>
