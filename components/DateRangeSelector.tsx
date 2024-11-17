@@ -17,7 +17,6 @@ const DateRangeSelector = () => {
     reset,
   } = useDatePickerStore();
 
-  console.log(startDate, endDate);
   return (
     <div className="mb-4">
       <div className="flex gap-4 m-5">
