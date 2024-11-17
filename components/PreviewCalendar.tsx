@@ -15,26 +15,27 @@ const PreviewCalendar = () => {
   const [dates, setDates] = useState<Date[]>([]);
 
   useEffect(() => {
-    console.log("preview calendar ");
     if (!startDate) return;
 
     const calculateRecurringDates = () => {
-      const results: Date[] = [];
-      let current = new Date(startDate);
+      if (startDate && endDate) {
+        const results: Date[] = [];
+        let current = new Date(startDate);
 
-      while (!endDate || current <= endDate) {
-        results.push(new Date(current));
-        if (recurrence === "daily")
-          current.setDate(current.getDate() + customization.interval);
-        else if (recurrence === "weekly")
-          current.setDate(current.getDate() + 7 * customization.interval);
-        else if (recurrence === "monthly")
-          current.setMonth(current.getMonth() + customization.interval);
-        else if (recurrence === "yearly")
-          current.setFullYear(current.getFullYear() + customization.interval);
+        while (!endDate || current <= endDate) {
+          results.push(new Date(current));
+          if (recurrence === "daily")
+            current.setDate(current.getDate() + customization.interval);
+          else if (recurrence === "weekly")
+            current.setDate(current.getDate() + 7 * customization.interval);
+          else if (recurrence === "monthly")
+            current.setMonth(current.getMonth() + customization.interval);
+          else if (recurrence === "yearly")
+            current.setFullYear(current.getFullYear() + customization.interval);
+        }
+
+        setDates(results);
       }
-
-      setDates(results);
     };
 
     calculateRecurringDates();

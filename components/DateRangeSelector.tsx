@@ -2,6 +2,8 @@
 
 import React from "react";
 import { useDatePickerStore } from "../store/useDatePickerStore";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function parseCurrentDate() {
   const date = new Date().toLocaleString().split("/");
@@ -9,9 +11,7 @@ function parseCurrentDate() {
 }
 
 const DateRangeSelector = () => {
-  // const { startDate, endDate, setStartDate, setEndDate } = useDatePickerStore();
-  const startDate = useDatePickerStore((state) => state.startDate);
-  const setStartDate = useDatePickerStore((state) => state.setStartDate);
+  const { startDate, endDate, setStartDate, setEndDate } = useDatePickerStore();
 
   console.log("startDate ---> ", startDate);
   return (
@@ -20,25 +20,21 @@ const DateRangeSelector = () => {
       <div className="flex space-x-4">
         <div>
           <p>Start Date:</p>
-          <input
-            type="date"
-            value={startDate ? (startDate as unknown as string) : ""}
-            onChange={(e) => {
-              setStartDate(e.target.value as unknown as Date);
-            }}
-          />
-          {/* <input type="date" value={startDate ? String(startDate) : parseCurrentDate()} onChange={(e)=>{setStartDate(e.target.value as unknown as Date)} } /> */}
-          {/* <DatePickerPopover onChange={(date) => setStartDate(date)} selected={startDate} /> */}
-          {/* <DatePicker
+          <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             className="p-2 border rounded-md"
-          /> */}
+          />
         </div>
-        {/* <div>
+        <div>
           <p>End Date:</p>
-          <input type="date" value={endDate ? String(endDate) : parseCurrentDate()} onChange={(e)=>{setEndDate(e.target.value as unknown as Date)} } />
-        </div> */}
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            className="p-2 border rounded-md"
+            isClearable
+          />
+        </div>
       </div>
     </div>
   );

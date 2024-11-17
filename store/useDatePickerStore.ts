@@ -1,39 +1,26 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import create from "zustand";
 
-export type State = {
-  endDate: Date | null;
-  startDate: Date | null;
-  customization: { interval: number; days?: string[] };
+interface RecurrenceState {
   recurrence: string;
-};
-
-export type Actions = {
+  customization: { interval: number; days?: string[] };
+  startDate: Date | null;
+  endDate: Date | null;
+  setRecurrence: (recurrence: string) => void;
   setCustomization: (customization: {
     interval: number;
     days?: string[];
   }) => void;
   setStartDate: (date: Date | null) => void;
   setEndDate: (date: Date | null) => void;
-  setRecurrence: (recurrence: string) => void;
-};
+}
 
-export const useDatePickerStore = create<State & Actions>()(
-  persist(
-    (set) => ({
-      endDate: null,
-      startDate: null,
-      customization: { interval: 1 },
-      recurrence: "daily",
-
-      setRecurrence: (recurrence: string) => set({ recurrence }),
-      setCustomization: (customization: {
-        interval: number;
-        days?: string[];
-      }) => set({ customization }),
-      setStartDate: (date: Date | null) => set({ startDate: date }),
-      setEndDate: (date: Date | null) => set({ endDate: date }),
-    }),
-    { name: "date-picker-store", skipHydration: true }
-  )
-);
+export const useDatePickerStore = create<RecurrenceState>((set) => ({
+  recurrence: "daily",
+  customization: { interval: 1 },
+  startDate: null,
+  endDate: null,
+  setRecurrence: (recurrence) => set({ recurrence }),
+  setCustomization: (customization) => set({ customization }),
+  setStartDate: (date) => set({ startDate: date }),
+  setEndDate: (date) => set({ endDate: date }),
+}));
