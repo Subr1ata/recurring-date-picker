@@ -8,5 +8,5 @@ services:
     ports:
       - "3000:3000" # Maps port 3000 on the host to port 3000 in the container
     volumes:
-      - .:/app # Mounts the project directory for live code changes (development mode)
+      - /home/subrata/www/recurring-date-picker:/app # Mounts the project directory for live code changes (development mode)
       - /app/node_modules # Prevents overwriting the container's node_modules

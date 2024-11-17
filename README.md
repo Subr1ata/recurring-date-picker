@@ -2,6 +2,21 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+## Docker
+To run the application in a Docker container, navigate to the project root and run the following command:
+
+# Development
+1) pnpm docker-dev:up (Runs the application in a Docker container)
+2) pnpm docker-dev:down (Stops the Docker container)
+
+# Production
+1) pnpm docker-prod:up (Builds and runs the application in a Docker container)
+2) pnpm docker-prod:down (Stops the Docker container)
+
+# For Windows
+Install WSL 2 or above for smoother experience with docker. Then Clone the repository inside WSL and navigate to the project root. Open the code in code editor from WSL environment, WSL extension in VS Code is recommended.
+
+
 First, run the development server:
 
 ```bash

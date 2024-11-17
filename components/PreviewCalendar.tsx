@@ -1,7 +1,13 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
-import { Calendar } from "react-calendar";
 import { useDatePickerStore } from "../store/useDatePickerStore";
 import { LooseValue } from "react-calendar/src/shared/types.js";
+
+const Calendar = dynamic(() => import("react-calendar"), {
+  ssr: false,
+});
 
 const PreviewCalendar = () => {
   const { startDate, endDate, recurrence, customization } =
@@ -9,6 +15,7 @@ const PreviewCalendar = () => {
   const [dates, setDates] = useState<Date[]>([]);
 
   useEffect(() => {
+    console.log("preview calendar ");
     if (!startDate) return;
 
     const calculateRecurringDates = () => {
@@ -43,6 +50,7 @@ const PreviewCalendar = () => {
             ? "bg-blue-200"
             : ""
         }
+        className={"bg-red"}
       />
     </div>
   );
